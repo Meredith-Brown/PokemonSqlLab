@@ -1,5 +1,17 @@
-2.1-TypesList: "SELECT name FROM types;" (list of types)
+2.1-TypesList: "SELECT name FROM types;" (list)
 2.2-ID45Name: "SELECT id, name FROM pokemons WHERE id = '45';" (Eevee)
 2.3-HowManyPokemon: "SELECT COUNT(*) FROM pokemons;" (656)
 2.4-HowManyTypes: "SELECT COUNT(*) FROM types;" (18)
 2.5-SecondaryType: "SELECT COUNT(*) FROM pokemons WHERE secondary_type <> 'null';" (316)
+
+3.1-PrimaryType: "SELECT p.id, p.name, t.name FROM pokemons p JOIN types t ON t.id=p.primary_type;" (list)
+3.2-RuffletSecondary: "SELECT p.name, t.name FROM pokemons p JOIN types t ON t.id=p.secondary_type WHERE
+    p.name = 'Rufflet';" (Flying)
+3.3-PokemonNamesTrainer303: "SELECT p.name, pt.trainerID FROM pokemons p JOIN pokemon_trainer pt ON p.id = pt.pokemon_id
+    WHERE pt.trainerID = 303;" (Wailord, Vileplum)
+3.4-SecondaryPoison: "SELECT COUNT(*) FROM pokemons p JOIN types t ON p.secondary_type = t.id WHERE
+    t.name = 'Poison';" (31)
+3.5-PrimaryTypeFrequency: "SELECT t.name, count(p.primary_type) FROM types t JOIN pokemons p ON
+    p.primary_type = t.id GROUP BY p.primary_type;" (list)
+3.6-Level100:
+3.7-UniqueTrainer:
