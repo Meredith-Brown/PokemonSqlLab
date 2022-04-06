@@ -1,0 +1,5 @@
+2.1-TypesList: "SELECT name FROM types;" (list of types)
+2.2-ID45Name: "SELECT id, name FROM pokemons WHERE id = '45';" (Eevee)
+2.3-HowManyPokemon: "SELECT COUNT(*) FROM pokemons;" (656)
+2.4-HowManyTypes: "SELECT COUNT(*) FROM types;" (18)
+2.5-SecondaryType: "SELECT COUNT(*) FROM pokemons WHERE secondary_type <> 'null';" (316)
