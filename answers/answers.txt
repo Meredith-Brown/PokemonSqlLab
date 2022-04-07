@@ -15,9 +15,13 @@
     p.primary_type = t.id GROUP BY p.primary_type;" (list)
 3.6-Level100: "SELECT trainerID, count(trainerID) FROM pokemon_trainer WHERE pokelevel >= 100 GROUP BY
     trainerID;" (list)
-3.7-UniqueTrainer: "SELECT pokemon_id, COUNT(pokemon_ID) AS Count, SUM(COUNT(pokemon_ID)) OVER() AS Sum
-    FROM pokemons p JOIN pokemon_trainer pt ON p.id = pt.pokemon_id GROUP BY pt.pokemon_id HAVING COUNT
-    (trainerID) = 1;" (13)
+3.7-UniqueTrainer: "SELECT pokemon_id, count(pokemon_ID) AS count, SUM(count(pokemon_ID)) OVER() AS Sum
+    FROM pokemons p JOIN pokemon_trainer pt ON p.id = pt.pokemon_id GROUP BY pt.pokemon_id HAVING
+    count(trainerID) = 1;" (13)
+*** is there a better way to do this?
 
-// SELECT COUNT(*) AS count FROM pokemons p JOIN pokemon_trainer pt ON p.id = pt.pokemon_id G
-   ROUP BY pt.pokemon_id HAVING COUNT(trainerID) = 1;
+4-FinalReport: SELECT pt.maxhp, p.name, tr.trainername, pt.pokelevel, t.name AS 'primary', t2.name AS
+    'secondary' FROM trainers tr JOIN pokemon_trainer pt ON tr.trainerID = pt.trainerID JOIN pokemons p ON
+    p.id = pt.pokemon_id JOIN types t ON t.id = p.primary_type JOIN types t2 ON t2.id = p.secondary_type
+    GROUP BY tr.trainername, pt.maxhp, p.name, pt.pokelevel, t.name, t2.name ORDER BY pt.maxhp DESC;"
+*** is there a better way to do this?
