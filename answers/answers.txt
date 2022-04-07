@@ -13,5 +13,11 @@
     t.name = 'Poison';" (31)
 3.5-PrimaryTypeFrequency: "SELECT t.name, count(p.primary_type) FROM types t JOIN pokemons p ON
     p.primary_type = t.id GROUP BY p.primary_type;" (list)
-3.6-Level100:
-3.7-UniqueTrainer:
+3.6-Level100: "SELECT trainerID, count(trainerID) FROM pokemon_trainer WHERE pokelevel >= 100 GROUP BY
+    trainerID;" (list)
+3.7-UniqueTrainer: "SELECT pokemon_id, COUNT(pokemon_ID) AS Count, SUM(COUNT(pokemon_ID)) OVER() AS Sum
+    FROM pokemons p JOIN pokemon_trainer pt ON p.id = pt.pokemon_id GROUP BY pt.pokemon_id HAVING COUNT
+    (trainerID) = 1;" (13)
+
+// SELECT COUNT(*) AS count FROM pokemons p JOIN pokemon_trainer pt ON p.id = pt.pokemon_id G
+   ROUP BY pt.pokemon_id HAVING COUNT(trainerID) = 1;
